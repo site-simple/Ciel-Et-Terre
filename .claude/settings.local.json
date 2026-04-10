@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.geobiologie-bagnes.ch)",
+      "Bash(pandoc \"C:/Users/Samuel/Desktop/geobiologie-bagnes.ch/contenu du site/Electrosmog.docx\" -t plain --wrap=none)",
+      "Bash(python -c \"import zipfile, xml.etree.ElementTree as ET; print\\('ok'\\)\")",
+      "Bash(python -c ':*)",
+      "Bash(python -u -c ':*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --no-import-alias --use-npm)",
+      "Bash(cp -r temp-init/src temp-init/public temp-init/next.config.ts temp-init/tsconfig.json temp-init/package.json temp-init/package-lock.json temp-init/node_modules temp-init/.gitignore temp-init/next-env.d.ts temp-init/eslint.config.mjs .)",
+      "Bash(rm -rf temp-init)",
+      "Bash(npm install:*)",
+      "Bash(mkdir -p public/images)",
+      "Bash(cp \"photos/Bandeau.jpg\" \"public/images/hero-banner.jpg\")",
+      "Bash(cp \"photos/_MG_2992.jpg\" \"public/images/joel-portrait.jpg\")",
+      "Bash(cp \"photos/_MG_2992 - Copie.jpg\" \"public/images/joel-detail-baguettes.jpg\")",
+      "Bash(cp \"photos/20211031_145324.jpg\" \"public/images/foret-lumiere.jpg\")",
+      "Bash(npm run:*)",
+      "Bash(npx next:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 14920 //F)",
+      "mcp__f80aa2e7-7bb0-42a8-a18d-69154ddb3f3e__deploy_to_vercel",
+      "Bash(pip install:*)",
+      "Read(//c/Users/Samuel/Desktop/**)",
+      "Bash(python create_devis.py)",
+      "Bash(python -c \"import openpyxl.worksheet.properties as p; print\\(dir\\(p\\)\\)\")",
+      "Bash(python -)",
+      "Bash(cmd.exe /c \"dir /s /b C:\\\\Users\\\\Samuel\\\\Desktop\\\\*.xlsx 2>nul\")",
+      "Bash(cmd.exe /c \"dir /s /b C:\\\\Users\\\\Samuel\\\\*.xlsx 2>nul | findstr /i devis\")",
+      "Bash(taskkill //PID 12104 //F)",
+      "Bash(xargs ls:*)",
+      "Bash(python -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(ls -la \"C:\\\\Users\\\\Samuel\\\\Desktop\\\\geobiologie-bagnes.ch\\\\src\\\\app\\\\icon\"*)",
+      "Bash(ls \"C:\\\\Users\\\\Samuel\\\\Desktop\\\\geobiologie-bagnes.ch\"/*.md)",
+      "Bash(ls /c/Users/Samuel/Desktop/geobiologie-bagnes.ch/*.md)"
+    ]
+  }
+}

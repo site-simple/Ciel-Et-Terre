@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geobiologie-bagnes.ch/sitemap.xml

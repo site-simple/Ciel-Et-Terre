@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sage: #80874F;
+  --color-sage-light: #9DA363;
+  --color-sage-dark: #656B3E;
+  --color-stone: #D4C5B2;
+  --color-stone-light: #E2D7C8;
+  --color-earth: #6B5B4B;
+  --color-earth-light: #8B7B6B;
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F0EBE3;
+  --color-gold: #B8976A;
+  --color-gold-light: #D4B88A;
+  --color-night: #2C2C2C;
+  --color-mist: #E8E4DE;
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-night);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background-color: var(--color-sage);
+  color: white;
+}
+
+/* ─── Unified animation tokens ─── */
+:root {
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --duration-hero: 800ms;
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ─── Respect prefers-reduced-motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
