@@ -37,6 +37,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Prevent horizontal overflow (hide accidental off-canvas elements) */
+html, body {
+  overflow-x: hidden;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }

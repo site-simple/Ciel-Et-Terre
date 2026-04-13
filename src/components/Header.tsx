@@ -47,7 +47,13 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingLeft: "calc(1rem + env(safe-area-inset-left))",
+          paddingRight: "calc(1rem + env(safe-area-inset-right))",
+        }}
+      >
         <div className="flex items-center justify-between h-18 md:h-16">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
