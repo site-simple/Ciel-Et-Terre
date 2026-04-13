@@ -75,6 +75,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={ebGaramond.variable}>
+      <head>
+        {/* Priorité 1 : Hero accueil — chargé immédiatement */}
+        <link rel="preload" as="image" href="/images/accueil-hero.webp" fetchPriority="high" />
+        {/* Priorité 2 : Heros des autres pages — chargés au repos du navigateur */}
+        <link rel="prefetch" as="image" href="/images/apropos-hero.webp" />
+        <link rel="prefetch" as="image" href="/images/geobiologie-hero.webp" />
+        <link rel="prefetch" as="image" href="/images/formations-hero.webp" />
+        <link rel="prefetch" as="image" href="/images/tarifs-hero.webp" />
+        <link rel="prefetch" as="image" href="/images/contact-hero.webp" />
+        <link rel="prefetch" as="image" href="/images/mediumnite-hero.webp" />
+        {/* Priorité 3 : Tableaux médiumnité — pas de prefetch, chargés à la demande */}
+      </head>
       <body className="antialiased bg-cream-dark text-night">
         <script
           type="application/ld+json"

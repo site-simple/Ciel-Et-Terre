@@ -14,7 +14,7 @@ export default function ContactForm() {
       <motion.div
         initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="bg-sage/10 rounded-2xl p-8 text-center"
       >
         <p className="text-sage-dark font-medium text-lg mb-2">
@@ -124,7 +124,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 bg-sage-dark text-white px-6 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed transition-[transform,background-color,box-shadow,opacity] duration-[500ms]"
+        className="w-full flex items-center justify-center gap-2 bg-sage-dark text-white px-6 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed transition-[scale,background-color,box-shadow,opacity] duration-[500ms]"
       >
         {loading ? (
           <>

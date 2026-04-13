@@ -33,14 +33,16 @@ async function run() {
     const outputPath = join(IMAGES_DIR, `${name}.webp`);
     const maxWidth = isHeroImage(file) ? HERO_MAX_WIDTH : CONTENT_MAX_WIDTH;
 
-    // Convert to WebP
+    // Convert to WebP (rotate() applies EXIF orientation to pixels)
     const info = await sharp(inputPath)
+      .rotate()
       .resize({ width: maxWidth, withoutEnlargement: true })
       .webp({ quality: WEBP_QUALITY })
       .toFile(outputPath);
 
     // Generate LQIP blur placeholder
     const blurBuffer = await sharp(inputPath)
+      .rotate()
       .resize(BLUR_WIDTH)
       .webp({ quality: 20 })
       .toBuffer();

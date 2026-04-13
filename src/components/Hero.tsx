@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface HeroProps {
@@ -23,6 +23,11 @@ export default function Hero({
 }: HeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setImageLoaded(true);
+  }, []);
 
   return (
     <section
@@ -46,6 +51,7 @@ export default function Hero({
       {/* Hidden image to detect load */}
       {blurDataURL && (
         <img
+          ref={imgRef}
           src={image}
           alt=""
           className="hidden"
@@ -59,7 +65,7 @@ export default function Hero({
         <motion.h1
           initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="font-[family-name:var(--font-heading)] text-[clamp(1.875rem,1.2rem+2.5vw,3rem)] font-medium mb-4"
         >
           {title}
@@ -68,7 +74,7 @@ export default function Hero({
           <motion.p
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-[clamp(1.125rem,1rem+0.5vw,1.25rem)] text-white/90 max-w-2xl mx-auto"
           >
             {subtitle}

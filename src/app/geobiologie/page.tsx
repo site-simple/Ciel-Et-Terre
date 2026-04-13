@@ -108,7 +108,7 @@ export default function Geobiologie() {
               },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="flex gap-4 bg-white rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[transform,box-shadow] duration-[500ms] h-full">
+                <div className="flex gap-4 bg-white rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[translate,box-shadow] duration-[1200ms] h-full">
                   <item.icon size={24} className="shrink-0 text-sage mt-0.5" />
                   <p className="text-night/80 text-sm leading-relaxed">{item.text}</p>
                 </div>
@@ -262,7 +262,7 @@ export default function Geobiologie() {
         <ScrollReveal>
           <Link
             href="/tarifs"
-            className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[transform,background-color,box-shadow] duration-[500ms]"
+            className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[scale,background-color,box-shadow] duration-[500ms]"
           >
             Voir les tarifs
           </Link>

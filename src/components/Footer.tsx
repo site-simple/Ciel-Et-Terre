@@ -73,7 +73,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="group flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-off-white/90 group-hover:scale-110 transition-transform duration-[400ms]" />
+                <MapPin size={18} className="mt-0.5 shrink-0 text-off-white/90 group-hover:scale-110 transition-[scale] duration-[400ms]" />
                 <a
                   href="https://www.google.com/maps/search/Chemin+du+Sommet+7,+1934+Le+Châble,+Suisse"
                   target="_blank"
@@ -87,7 +87,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="group flex items-center gap-3">
-                <Phone size={18} className="shrink-0 text-off-white/90 group-hover:scale-110 transition-transform duration-[400ms]" />
+                <Phone size={18} className="shrink-0 text-off-white/90 group-hover:scale-110 transition-[scale] duration-[400ms]" />
                 <div className="text-sm space-y-1">
                   <a href="tel:+41794176737" className="block hover:text-white transition-colors duration-[400ms]">
                     Joël Hiroz - 079 417 67 37
@@ -98,7 +98,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="group flex items-center gap-3">
-                <Mail size={18} className="shrink-0 text-off-white/90 group-hover:scale-110 transition-transform duration-[400ms]" />
+                <Mail size={18} className="shrink-0 text-off-white/90 group-hover:scale-110 transition-[scale] duration-[400ms]" />
                 <a
                   href="mailto:info@cieletterre.ch"
                   className="text-sm hover:text-white transition-colors duration-[400ms]"
@@ -120,7 +120,7 @@ export default function Footer() {
                 href="https://www.instagram.com/_cieletterre"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-lg bg-off-white/10 flex items-center justify-center text-off-white/80 hover:text-white hover:bg-off-white/20 hover:scale-110 active:scale-95 transition-[color,background-color,transform] duration-[400ms]"
+                className="w-11 h-11 rounded-lg bg-off-white/10 flex items-center justify-center text-off-white/80 hover:text-white hover:bg-off-white/20 hover:scale-110 active:scale-95 transition-[color,background-color,scale] duration-[400ms]"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-5 h-5" />
@@ -129,7 +129,7 @@ export default function Footer() {
                 href="https://www.facebook.com/cieletterre"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-lg bg-off-white/10 flex items-center justify-center text-off-white/80 hover:text-white hover:bg-off-white/20 hover:scale-110 active:scale-95 transition-[color,background-color,transform] duration-[400ms]"
+                className="w-11 h-11 rounded-lg bg-off-white/10 flex items-center justify-center text-off-white/80 hover:text-white hover:bg-off-white/20 hover:scale-110 active:scale-95 transition-[color,background-color,scale] duration-[400ms]"
                 aria-label="Facebook"
               >
                 <FacebookIcon className="w-5 h-5" />

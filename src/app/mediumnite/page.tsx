@@ -112,22 +112,22 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="flex-1 flex flex-col items-start justify-center min-h-0"
+                  transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="flex-1 flex flex-col items-center justify-center min-h-0"
                 >
-                  <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] max-h-[calc(100%-60px)] inline-block">
+                  <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
                     <Image
                       src={images[current].src}
                       alt={images[current].alt}
                       width={images[current].width}
                       height={images[current].height}
-                      className="block w-auto h-auto max-h-[calc(80vh-124px)] md:max-h-[calc(80vh-124px)]"
+                      className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-148px)]"
                       sizes="(max-width: 768px) 100vw, 700px"
-                      priority={current === 0}
+                      loading="lazy"
                     />
                   </div>
-                  {/* Plaque muséale - alignée sur le bord gauche de l'image */}
-                  <div className="mt-3 ml-6">
+                  {/* Plaque muséale */}
+                  <div className="mt-3">
                     <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
                       <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[current].title}</p>
                       <p className="text-dark-blue/50 text-xs mt-1">{images[current].technique}</p>
@@ -339,7 +339,7 @@ export default function Mediumnite() {
             <div className="mt-10 text-center">
               <Link
                 href="/formations#peinture-niveau-1"
-                className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[transform,background-color,box-shadow] duration-[500ms]"
+                className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[scale,background-color,box-shadow] duration-[500ms]"
               >
                 En savoir plus
               </Link>
@@ -366,7 +366,7 @@ export default function Mediumnite() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.25 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
             onClick={closeLightbox}
             role="dialog"
@@ -386,7 +386,7 @@ export default function Mediumnite() {
             {/* Precedent */}
             <button
               onClick={(e) => { e.stopPropagation(); goPrev(); }}
-              className="absolute left-0 top-0 bottom-0 w-20 md:w-32 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/5 transition-[color,background-color] duration-[400ms] z-10"
+              className="absolute left-0 top-0 bottom-0 w-20 md:w-32 flex items-end pb-16 md:items-center md:pb-0 justify-center text-white/50 hover:text-white hover:bg-white/5 transition-[color,background-color] duration-[400ms] z-10"
               aria-label="Précédent"
             >
               <ChevronLeft size={48} />
@@ -395,7 +395,7 @@ export default function Mediumnite() {
             {/* Suivant */}
             <button
               onClick={(e) => { e.stopPropagation(); goNext(); }}
-              className="absolute right-0 top-0 bottom-0 w-20 md:w-32 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/5 transition-[color,background-color] duration-[400ms] z-10"
+              className="absolute right-0 top-0 bottom-0 w-20 md:w-32 flex items-end pb-16 md:items-center md:pb-0 justify-center text-white/50 hover:text-white hover:bg-white/5 transition-[color,background-color] duration-[400ms] z-10"
               aria-label="Suivant"
             >
               <ChevronRight size={48} />
@@ -408,7 +408,7 @@ export default function Mediumnite() {
                 initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="relative w-[80vw] max-w-3xl aspect-square"
               >
                 <Image

@@ -47,7 +47,7 @@ export default function ServiceCard({
   return (
     <ScrollReveal delay={delay}>
       <Link href={href} className="group block">
-        <div className={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-md group-hover:-translate-y-1 active:scale-[0.98] transition-[transform,box-shadow] duration-[500ms] h-full border ${c.border}`}>
+        <div className={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-md group-hover:-translate-y-1 active:scale-[0.98] transition-[translate,scale,box-shadow] duration-[1200ms] h-full border ${c.border}`}>
           <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-colors duration-[400ms] ${c.iconBg}`}>
             <Icon size={28} className={c.iconText} />
           </div>

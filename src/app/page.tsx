@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Home, Sparkles, BookOpen } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -17,7 +17,12 @@ const quotes = [
 export default function Accueil() {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const heroImgRef = useRef<HTMLImageElement>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (heroImgRef.current?.complete) setHeroLoaded(true);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,13 +47,13 @@ export default function Accueil() {
             opacity: heroLoaded ? 0 : 1,
           }}
         />
-        <img src="/images/accueil-hero.webp" alt="" className="hidden" onLoad={() => setHeroLoaded(true)} />
+        <img ref={heroImgRef} src="/images/accueil-hero.webp" alt="" className="hidden" onLoad={() => setHeroLoaded(true)} />
         <div className="absolute inset-0 bg-night/55" />
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="-mb-4 md:-mb-6 lg:-mb-8"
           >
             <h1 className="sr-only">Ciel et Terre - Géobiologie &amp; Médiumnité à Val de Bagnes, Valais</h1>
@@ -57,13 +62,13 @@ export default function Accueil() {
               alt="Ciel et Terre"
               width={400}
               height={120}
-              className="h-28 md:h-44 lg:h-56 w-auto mx-auto brightness-0 invert"
+              className="h-28 md:h-44 lg:h-72 w-auto mx-auto brightness-0 invert"
             />
           </motion.div>
           <motion.p
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-[clamp(1.125rem,1rem+0.5vw,1.25rem)] text-white/90 mb-4"
           >
             Géobiologie &amp; Médiumnité - Val de Bagnes, Valais
@@ -71,7 +76,7 @@ export default function Accueil() {
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mb-10 h-12 md:h-8 relative"
           >
             <AnimatePresence mode="wait">
@@ -80,7 +85,7 @@ export default function Accueil() {
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-white/80 italic text-xs md:text-base absolute inset-0 flex items-center justify-center font-[family-name:var(--font-quote)] text-center px-4"
               >
                 {quotes[quoteIndex]}
@@ -90,11 +95,11 @@ export default function Accueil() {
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 2.4, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Link
               href="/a-propos"
-              className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[transform,background-color,box-shadow] duration-[500ms]"
+              className="inline-block bg-sage-dark text-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-sage active:scale-[0.97] transition-[scale,background-color,box-shadow] duration-[500ms]"
             >
               En savoir plus
             </Link>

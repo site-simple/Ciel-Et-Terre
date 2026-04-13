@@ -48,19 +48,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Unified animation tokens ─── */
 :root {
-  --duration-fast: 400ms;
-  --duration-normal: 500ms;
-  --duration-slow: 700ms;
-  --duration-hero: 800ms;
-  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-exit: cubic-bezier(0.4, 0.0, 1, 1);
-  --transition-fast: var(--duration-fast) var(--ease-smooth);
-  --transition-base: var(--duration-normal) var(--ease-smooth);
-  --transition-slow: var(--duration-slow) var(--ease-smooth);
-  --transition-enter: 400ms var(--ease-enter);
-  --transition-exit: 400ms var(--ease-exit);
+  /* Durées — hiérarchie relaxation */
+  --duration-hover: 500ms;       /* Survol liens, boutons, icônes */
+  --duration-reveal: 900ms;      /* Apparition au scroll */
+  --duration-hero: 1000ms;       /* Entrée hero page */
+  --duration-panel: 450ms;       /* Menus, accordéons, modales */
+
+  /* Courbe unique — douce et naturelle */
+  --ease-wellness: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Composites */
+  --transition-hover: var(--duration-hover) var(--ease-wellness);
+  --transition-reveal: var(--duration-reveal) var(--ease-wellness);
+  --transition-hero: var(--duration-hero) var(--ease-wellness);
+  --transition-panel: var(--duration-panel) var(--ease-wellness);
 }
 
 /* ─── Focus visible — soft glow for wellness feel ─── */
@@ -87,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  transition: top var(--transition-fast);
+  transition: top var(--transition-hover);
 }
 .skip-link:focus {
   top: 0;
@@ -108,10 +109,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── View Transitions (progressive enhancement) ─── */
 ::view-transition-old(root) {
-  animation: vt-fade-out 250ms var(--ease-smooth);
+  animation: vt-fade-out 400ms var(--ease-wellness);
 }
 ::view-transition-new(root) {
-  animation: vt-fade-in 250ms var(--ease-smooth);
+  animation: vt-fade-in 400ms var(--ease-wellness);
 }
 @keyframes vt-fade-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes vt-fade-in { from { opacity: 0; } to { opacity: 1; } }

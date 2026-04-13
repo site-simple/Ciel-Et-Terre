@@ -119,7 +119,7 @@ export default function Header() {
             initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.25, ease: "easeInOut" }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="lg:hidden overflow-hidden bg-white border-t border-mist"
           >
             <div className="px-4 py-4 space-y-1">
@@ -128,7 +128,7 @@ export default function Header() {
                   key={link.href}
                   initial={prefersReducedMotion ? false : { opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2, delay: i * 0.04 }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35, delay: i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <Link
                     href={link.href}

@@ -37,7 +37,7 @@ export default function Tarifs() {
               { title: "Lecture psychique avec auragraphe", price: "CHF 120.00", duration: "Durée de la séance : 60 minutes" },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="bg-off-white/10 backdrop-blur-sm rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[transform,box-shadow] duration-[500ms]">
+                <div className="bg-off-white/10 backdrop-blur-sm rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[translate,box-shadow] duration-[1200ms]">
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-off-white mb-4">
                     {item.title}
                   </h3>
@@ -73,7 +73,7 @@ export default function Tarifs() {
               { title: "Déplacements", price: "CHF 1.00 le km aller et retour" },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1} className="h-full">
-                <div className="bg-off-white/10 backdrop-blur-sm rounded-2xl px-4 py-6 md:p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[transform,box-shadow] duration-[500ms] h-full flex flex-col justify-center">
+                <div className="bg-off-white/10 backdrop-blur-sm rounded-2xl px-4 py-6 md:p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[translate,box-shadow] duration-[1200ms] h-full flex flex-col justify-center">
                   <h3 className="font-[family-name:var(--font-heading)] text-[clamp(1rem,0.8rem+0.7vw,1.25rem)] text-off-white mb-3 md:mb-4">
                     {item.title}
                   </h3>
@@ -90,7 +90,7 @@ export default function Tarifs() {
             <div className="text-center">
               <Link
                 href="/contact"
-                className="inline-block bg-dark-green text-off-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-dark-green/80 active:scale-[0.97] transition-[transform,background-color,box-shadow] duration-[500ms]"
+                className="inline-block bg-dark-green text-off-white px-8 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:bg-dark-green/80 active:scale-[0.97] transition-[scale,background-color,box-shadow] duration-[500ms]"
               >
                 Demander un devis
               </Link>
