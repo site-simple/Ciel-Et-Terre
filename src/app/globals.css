@@ -14,17 +14,15 @@
   --color-gold-light: #D4B88A;
   --color-night: #2C2C2C;
   --color-mist: #E8E4DE;
+  --color-dark-green: #3b3e2f;
+  --color-off-white: #e1dece;
+  --color-dark-blue: #1a3541;
 
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-}
+  --font-heading: "EB Garamond", Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-quote: "Cavolini", "Segoe Script", cursive;
 
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 400 900;
-  font-display: swap;
-  src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
 }
 
 html {
@@ -32,7 +30,7 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-cream-dark);
   color: var(--color-night);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -50,12 +48,73 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Unified animation tokens ─── */
 :root {
-  --duration-fast: 200ms;
-  --duration-normal: 300ms;
-  --duration-slow: 600ms;
+  --duration-fast: 400ms;
+  --duration-normal: 500ms;
+  --duration-slow: 700ms;
   --duration-hero: 800ms;
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0.0, 1, 1);
+  --transition-fast: var(--duration-fast) var(--ease-smooth);
+  --transition-base: var(--duration-normal) var(--ease-smooth);
+  --transition-slow: var(--duration-slow) var(--ease-smooth);
+  --transition-enter: 400ms var(--ease-enter);
+  --transition-exit: 400ms var(--ease-exit);
 }
+
+/* ─── Focus visible — soft glow for wellness feel ─── */
+*:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+}
+
+/* Remove outline on mouse-click but keep for keyboard */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Skip-to-content link ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--color-sage-dark);
+  color: white;
+  border-radius: 0 0 8px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Parallax: graceful fallback on touch devices ─── */
+@media (hover: none) {
+  .bg-fixed {
+    background-attachment: scroll !important;
+  }
+}
+
+/* ─── Shimmer animation for skeleton screens ─── */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── View Transitions (progressive enhancement) ─── */
+::view-transition-old(root) {
+  animation: vt-fade-out 250ms var(--ease-smooth);
+}
+::view-transition-new(root) {
+  animation: vt-fade-in 250ms var(--ease-smooth);
+}
+@keyframes vt-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes vt-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* ─── Respect prefers-reduced-motion ─── */
 @media (prefers-reduced-motion: reduce) {

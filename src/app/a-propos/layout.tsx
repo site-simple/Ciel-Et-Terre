@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Qui sommes-nous | Ciel et Terre — Val de Bagnes",
+  title: "Qui sommes-nous | Ciel et Terre - Val de Bagnes",
   description:
     "Découvrez Joël et Marie, géobiologue et médium dans le Val de Bagnes en Valais. Parcours, formations et vision.",
   keywords: [
@@ -15,18 +15,18 @@ export const metadata: Metadata = {
     canonical: "/a-propos",
   },
   openGraph: {
-    title: "Qui sommes-nous | Ciel et Terre — Val de Bagnes",
+    title: "Qui sommes-nous | Ciel et Terre - Val de Bagnes",
     description:
       "Découvrez Joël et Marie, géobiologue et médium dans le Val de Bagnes en Valais.",
     url: "/a-propos",
-    images: [{ url: "/images/about.jpg", width: 1200, height: 630, alt: "Joël et Marie — Ciel et Terre" }],
+    images: [{ url: "/images/apropos-hero.jpg", width: 1200, height: 630, alt: "Joël et Marie - Ciel et Terre" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qui sommes-nous | Ciel et Terre — Val de Bagnes",
+    title: "Qui sommes-nous | Ciel et Terre - Val de Bagnes",
     description:
       "Découvrez Joël et Marie, géobiologue et médium dans le Val de Bagnes en Valais.",
-    images: ["/images/about.jpg"],
+    images: ["/images/apropos-hero.jpg"],
   },
 };
 

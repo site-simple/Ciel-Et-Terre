@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface HeroProps {
   image: string;
@@ -9,6 +10,7 @@ interface HeroProps {
   alt: string;
   overlay?: boolean;
   height?: string;
+  blurDataURL?: string;
 }
 
 export default function Hero({
@@ -17,30 +19,57 @@ export default function Hero({
   subtitle,
   overlay = true,
   height = "h-[60vh]",
+  blurDataURL,
 }: HeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section
-      className={`relative ${height} flex items-center justify-center overflow-hidden bg-fixed bg-cover bg-center`}
-      style={{ backgroundImage: `url(${image})` }}
+      className={`relative ${height} flex items-center justify-center overflow-hidden bg-cover bg-center bg-fixed bg-earth`}
+      style={{
+        backgroundImage: `url(${image})`,
+      }}
     >
+      {/* Blur-up placeholder layer */}
+      {blurDataURL && (
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
+          style={{
+            backgroundImage: `url(${blurDataURL})`,
+            filter: "blur(20px)",
+            transform: "scale(1.1)",
+            opacity: imageLoaded ? 0 : 1,
+          }}
+        />
+      )}
+      {/* Hidden image to detect load */}
+      {blurDataURL && (
+        <img
+          src={image}
+          alt=""
+          className="hidden"
+          onLoad={() => setImageLoaded(true)}
+        />
+      )}
       {overlay && (
         <div className="absolute inset-0 bg-night/55" />
       )}
       <div className="relative z-10 text-center text-white px-4">
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl lg:text-5xl font-medium mb-4"
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="font-[family-name:var(--font-heading)] text-[clamp(1.875rem,1.2rem+2.5vw,3rem)] font-medium mb-4"
         >
           {title}
         </motion.h1>
         {subtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto"
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-[clamp(1.125rem,1rem+0.5vw,1.25rem)] text-white/90 max-w-2xl mx-auto"
           >
             {subtitle}
           </motion.p>
