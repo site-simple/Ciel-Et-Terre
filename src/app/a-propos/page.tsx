@@ -52,45 +52,19 @@ export default function APropos() {
               <ScrollReveal>
                 <div className="space-y-5 text-off-white/90 leading-relaxed">
                   <p>
-                    Native d&apos;un village de montagne en Valais, j&apos;ai grandi au sein d&apos;une famille catholique pratiquante, où le lien au monde spirituel faisait naturellement partie du quotidien. Très tôt, j&apos;ai perçu mon environnement avec une sensibilité particulière : des ressentis subtils, des impressions difficiles à nommer, une intuition vive qui me dépassait. Je ne savais pas encore que cette hypersensibilité deviendrait un jour l&apos;un de mes plus précieux outils.
+                    Née dans un village de montagne en Valais, j&apos;ai grandi dans une famille où la spiritualité faisait naturellement partie du quotidien. Très tôt, ma sensibilité et mon intuition se sont révélées, sans que je comprenne encore qu&apos;elles deviendraient des outils précieux.
                   </p>
                   <p>
-                    Très jeune, je rêvais de devenir artiste peintre. Les couleurs, les formes et la création étaient pour moi une évidence. Pourtant, la vie m&apos;a d&apos;abord conduite vers le métier d&apos;aide-soignante, une voie en résonance avec mon empathie et mon désir d&apos;accompagner les autres. Ce choix, loin de me détourner de ma voie, a nourri ma compréhension de l&apos;humain. J&apos;y ai appris l&apos;écoute, la présence, la douceur - des qualités qui, plus tard, deviendront essentielles dans mon travail artistique et pédagogique, posant les bases de ma démarche actuelle : une approche où la création artistique devient un espace de bien-être, d&apos;expression et d&apos;alignement intérieur, des compétences nécessaires dans ma pratique de la médiumnité.
+                    Je rêvais d&apos;être artiste peintre, mais j&apos;ai d&apos;abord travaillé comme aide-soignante, un métier en accord avec mon empathie. Cette expérience a nourri ma compréhension de l&apos;humain et posé les bases de mon approche actuelle : une création artistique au service du bien-être, de l&apos;expression et de l&apos;alignement intérieur, en lien avec ma médiumnité.
                   </p>
                   <p>
-                    En 2002, une remise en question majeure m&apos;a conduite à me reconnecter à mon Âme et à réorienter ma vie dans ses aspects spirituels et professionnels.
+                    En 2002, une profonde remise en question m&apos;a reconnectée à mon Âme et a réorienté ma vie. En 2005, j&apos;ai fondé Terre colorée, mon atelier de dessin et de peinture, où le monde spirituel a repris une place active. Mes Guides se sont manifestés dans mes œuvres, bien avant que je ne reconnaisse cette inspiration comme de la médiumnité.
                   </p>
                   <p>
-                    En 2005, j&apos;ai fondé Terre colorée, mon atelier de dessin et de peinture. C&apos;était bien plus qu&apos;un espace de création : c&apos;était un retour à moi-même. C&apos;est à cette période que le monde spirituel a repris une place active dans ma vie. Mes Guides se sont manifestés à travers mes œuvres, notamment dans la série &laquo; Huile et texte &raquo;, bien avant que je ne comprenne que cette inspiration portait un nom : la médiumnité.
+                    Après un long chemin d&apos;intégration, j&apos;ai suivi mes premières formations en 2015, puis durant plusieurs années au Arthur Findlay College. Depuis, j&apos;ai approfondi différents aspects de la médiumnité : l&apos;art psychique, le contact avec les défunts et la trans-médiumnité.
                   </p>
                   <p>
-                    Le chemin fut long avant que je prenne conscience de mon potentiel médiumnique et que je l&apos;accueille comme une véritable voie intérieure.
-                  </p>
-                  <p>
-                    En 2015, j&apos;ai suivi mon premier cours de médiumnité auprès de Sarah d&apos;Usrso, une expérience brève mais déterminante. J&apos;ai poursuivi ma formation avec elle pendant un an et demi, puis au Arthur Findlay College en Angleterre en 2017, une étape marquante dans mon développement.
-                  </p>
-                  <p>
-                    Depuis, j&apos;ai enrichi ma pratique auprès de nombreux enseignants reconnus - Nadia Mongi, Lynn Parker, Kitty Wood, Sue Wood, Moira Hawkins, Andrew Manship, John Johnson et Tim Abbott. Grâce à eux, j&apos;ai exploré différents aspects de la médiumnité :
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-off-white/60 mt-2 shrink-0" />
-                      <span>L&apos;art psychique : lecture énergétique à travers la création de tableaux et d&apos;aura-graphes,</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-off-white/60 mt-2 shrink-0" />
-                      <span>Le contact avec les défunts,</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-off-white/60 mt-2 shrink-0" />
-                      <span>La trans-médiumnité, dans laquelle je me considère encore en formation.</span>
-                    </li>
-                  </ul>
-                  <p>
-                    Aujourd&apos;hui, j&apos;avance sur ce chemin avec gratitude et émerveillement. Mon travail réunit l&apos;art, la sensibilité intuitive et la médiumnité dans une approche profondément humaine. J&apos;accompagne chacun avec respect, éthique et douceur, en mettant mes capacités au service de la compréhension, de la guérison et de la beauté.
-                  </p>
-                  <p className="text-off-white font-medium italic">
-                    Mon histoire est celle d&apos;un retour à soi, d&apos;une écoute retrouvée, et d&apos;un dialogue constant entre le visible et l&apos;invisible.
+                    Aujourd&apos;hui, j&apos;unis l&apos;art, l&apos;intuition et la médiumnité dans une démarche profondément humaine. J&apos;accompagne chacun avec respect, éthique et douceur, au service de la compréhension, de la guérison et de la beauté. Mon parcours de vie est celui d&apos;un retour à soi et d&apos;un dialogue constant entre le visible et l&apos;invisible.
                   </p>
                 </div>
               </ScrollReveal>

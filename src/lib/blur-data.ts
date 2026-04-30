@@ -13,7 +13,7 @@ export const blurDataURLs: Record<string, string> = {
   "geobiologie-demarche": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoKAAcABUB8JYgCdAD8LjyAGYAA/kDv2+9fcRaOIq+ppmuS9eMWwBES+KfAWKWQRC14AA==",
   "geobiologie-hero": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAABwAQCdASoKAA0ABUB8JZQAApcdQAD44VRULeDAc85dCNLFQcbtVwNBZupRUMB4s/e8arYEAAA=",
   "geobiologie-histoire": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAQCdASoKAA0ABUB8JbACdGuAAkNmAQAA/eOlFVYx91hOoKPJtrxjbspfaMdEF3gUcXiTcD9j0ORxQAAAAA==",
-  "mediumnite-contact-defunt": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABwAQCdASoKAAgABUB8JbACdAF1AAD+74OorZdoVtKI37STKiJHTAp4uOuyCGgAAAA=",
-  "mediumnite-hero": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAACwAQCdASoKAAYABUB8JYwCdADZkL0AAP7CQ+iSrftkrHwwuaE+Y4wxLi4AAA==",
+  "mediumnite-contact-defunt": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACQAQCdASoKAAUABUB8JZwAAma2cMAA/ugzcFt9ZL1hB/HwU3NxcUAA",
+  "mediumnite-hero": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACwAQCdASoKAAMABUB8JZQCdADdA8XQAP7cuRUhjlSGvedz18cAAA==",
   "tarifs-hero": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACQAQCdASoKAAUABUB8JZQAAtz2YqAA/ty9tbedr4bOTaWYAAA="
 };

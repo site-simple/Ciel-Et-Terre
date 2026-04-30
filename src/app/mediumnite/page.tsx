@@ -18,9 +18,11 @@ const galleryImages = [
 ];
 
 
+const FADE_DURATION = 1.4;
+
 function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImages; onImageClick: (i: number) => void }) {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [previous, setPrevious] = useState(0);
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -28,18 +30,38 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
   const len = images.length;
 
   const go = (dir: number) => {
-    setDirection(dir);
+    setPrevious(current);
     setCurrent((prev) => (prev + dir + len) % len);
   };
 
-  // Auto-play toutes les 5 secondes, redémarre après chaque changement
+  // Après le fade-in du nouveau tableau, l'ancien (fadé à 0) devient le previous, prêt pour la prochaine transition.
+  useEffect(() => {
+    if (previous === current) return;
+    if (prefersReducedMotion) {
+      setPrevious(current);
+      return;
+    }
+    const t = setTimeout(() => setPrevious(current), FADE_DURATION * 1000);
+    return () => clearTimeout(t);
+  }, [current, previous, prefersReducedMotion]);
+
+  // Auto-play toutes les 10 secondes, redémarre après chaque changement
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDirection(1);
+      setPrevious(current);
       setCurrent((prev) => (prev + 1) % len);
     }, 10000);
     return () => clearTimeout(timer);
   }, [current, len]);
+
+  // Précharge toutes les images de la galerie au mount pour des transitions instantanées
+  useEffect(() => {
+    images.forEach((img) => {
+      const preload = new window.Image();
+      preload.src = img.src;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Swipe touch handlers
   const onTouchStart = (e: React.TouchEvent) => {
@@ -58,18 +80,6 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
     touchStart.current = null;
     touchEnd.current = null;
   };
-
-  const variants = prefersReducedMotion
-    ? {
-        enter: { opacity: 0 },
-        center: { opacity: 1 },
-        exit: { opacity: 0 },
-      }
-    : {
-        enter: (d: number) => ({ x: d > 0 ? 100 : -100, opacity: 0 }),
-        center: { x: 0, opacity: 1 },
-        exit: (d: number) => ({ x: d > 0 ? -100 : 100, opacity: 0 }),
-      };
 
   return (
     <>
@@ -103,38 +113,54 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
             aria-live="polite"
             aria-atomic="true"
           >
-            <div className="overflow-visible flex flex-col items-center h-[calc(70vh-64px)] md:h-[calc(80vh-64px)] px-6">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={current}
-                  custom={direction}
-                  variants={variants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="flex-1 flex flex-col items-center justify-center min-h-0"
+            <div className="relative overflow-visible flex flex-col items-center h-[calc(70vh-64px)] md:h-[80vh] px-6">
+              {/* Couche du tableau précédent : fade-out */}
+              {previous !== current && (
+                <div
+                  key={`prev-${previous}`}
+                  className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gallery-fade-out"
                 >
                   <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
                     <Image
-                      src={images[current].src}
-                      alt={images[current].alt}
-                      width={images[current].width}
-                      height={images[current].height}
-                      className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-148px)]"
+                      src={images[previous].src}
+                      alt=""
+                      width={images[previous].width}
+                      height={images[previous].height}
+                      className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-100px)]"
                       sizes="(max-width: 768px) 100vw, 700px"
-                      loading="lazy"
                     />
                   </div>
-                  {/* Plaque muséale */}
                   <div className="mt-3">
                     <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
-                      <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[current].title}</p>
-                      <p className="text-dark-blue/50 text-xs mt-1">{images[current].technique}</p>
+                      <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[previous].title}</p>
+                      <p className="text-dark-blue/50 text-xs mt-1">{images[previous].technique}</p>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+              )}
+              {/* Couche du tableau courant : fade-in */}
+              <div
+                key={`curr-${current}`}
+                className="absolute inset-0 flex flex-col items-center justify-center gallery-fade-in"
+              >
+                <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
+                  <Image
+                    src={images[current].src}
+                    alt={images[current].alt}
+                    width={images[current].width}
+                    height={images[current].height}
+                    className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-100px)]"
+                    sizes="(max-width: 768px) 100vw, 700px"
+                    priority
+                  />
+                </div>
+                <div className="mt-3">
+                  <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
+                    <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[current].title}</p>
+                    <p className="text-dark-blue/50 text-xs mt-1">{images[current].technique}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -212,6 +238,7 @@ export default function Mediumnite() {
         title="Médiumnité"
         subtitle="Un pont entre le visible et l'invisible, au service de votre chemin."
         blurDataURL={blurDataURLs["mediumnite-hero"]}
+        fixedBackground={false}
       />
 
       {/* Section 1: Qu'est-ce que la mediumnite - off-white bg, dark-blue text */}
@@ -228,7 +255,7 @@ export default function Mediumnite() {
                 La médiumnité est un pont entre le visible et l&apos;invisible, une capacité naturelle permettant d&apos;entrer en résonance avec les mondes subtils. Le médium devient alors un canal, un réceptacle, un messager. À travers son corps, son cœur et sa conscience, il perçoit les émotions, les vibrations et les énergies qui entourent les êtres, les lieux et la nature.
               </p>
               <p>
-                Depuis la nuit des temps, ces êtres sensibles ont accompagné l&apos;humanité. Ils étaient chamanes, druides, guérisseurs, prophètes - ceux qui savaient écouter ce que le silence murmure.
+                Depuis la nuit des temps, ces êtres sensibles ont accompagné l&apos;humanité. Ils étaient chamanes, druides, guérisseurs - ceux qui savaient écouter ce que le silence murmure.
               </p>
               <p>
                 Nous portons tous en nous une forme de médiumnité, une sensibilité naturelle qui ne demande qu&apos;à être reconnue. Pourtant, chacun ne choisira pas forcément de développer ce potentiel. La médiumnité n&apos;est qu&apos;un chemin parmi d&apos;autres, une voie intérieure qui mène à la rencontre de Soi.
@@ -259,7 +286,7 @@ export default function Mediumnite() {
                 {[
                   "Des messages porteurs de sens,",
                   "Une guidance adaptée à la situation vécue,",
-                  "Une guérison émotionnelle, le lien continue, une forme de présence,",
+                  "Une guérison émotionnelle,",
                   "Éclaircir des non-dits, mettre des mots sur des situations restées en suspens,",
                   "Un apaisement ou une compréhension plus profonde.",
                 ].map((item, i) => (
@@ -276,7 +303,7 @@ export default function Mediumnite() {
             <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mt-12 max-w-2xl mx-auto">
               <Image
                 src="/images/mediumnite-contact-defunt.webp"
-                alt="Peinture intuitive"
+                alt="Brume sur paysage de montagne au soleil levant"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 60vw"
@@ -402,14 +429,14 @@ export default function Mediumnite() {
             </button>
 
             {/* Image + legende */}
-            <div className="flex flex-col items-center max-w-5xl max-h-[85vh] px-4 md:px-16" onClick={(e) => e.stopPropagation()}>
+            <div className="flex flex-col items-center max-w-5xl max-h-[85vh] md:max-h-[80vh] px-4 md:px-16" onClick={(e) => e.stopPropagation()}>
               <motion.div
                 key={lightboxIndex}
                 initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="relative w-[80vw] max-w-3xl aspect-square"
+                className="relative w-[80vw] max-w-3xl aspect-square md:max-h-[calc(80vh-70px)]"
               >
                 <Image
                   src={galleryImages[lightboxIndex].src}

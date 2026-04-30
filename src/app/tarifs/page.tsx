@@ -69,7 +69,7 @@ export default function Tarifs() {
             {[
               { title: "Expertise de maisons et de locaux commerciaux", price: "CHF 2.50 le m²" },
               { title: "Expertise de terrains jusqu'à 1000 m²", price: "CHF 600.00 puis CHF 1.00 le m²" },
-              { title: "Nettoyages énergétiques de mémoires de lieux et rééquilibrage des énergies", price: "CHF 150.00" },
+              { title: "Nettoyages énergétiques de mémoires de lieux et rééquilibrage des énergies", price: "Dès CHF 150.00*" },
               { title: "Déplacements", price: "CHF 1.00 le km aller et retour" },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1} className="h-full">
@@ -84,6 +84,9 @@ export default function Tarifs() {
           </div>
 
           <ScrollReveal>
+            <p className="text-off-white/80 text-center text-sm italic mb-6 max-w-2xl mx-auto">
+              *Pour une maison, appartement jusqu&apos;à 5 pièces ensuite, CHF 30.00 par pièce supplémentaire.
+            </p>
             <p className="text-off-white/90 text-center mb-10">
               Sur demande, je vous ferai parvenir un devis détaillé.
             </p>

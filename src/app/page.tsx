@@ -10,8 +10,8 @@ import ServiceCard from "@/components/ServiceCard";
 import { blurDataURLs } from "@/lib/blur-data";
 
 const quotes = [
-  "\u00AB On ne peut concevoir le Ciel sans la Terre, ni la Terre sans le Ciel \u00BB \u2014 Nguy\u1EC5n Du",
-  "\u00AB Le Ciel et la Terre sont en nous \u00BB \u2014 Gandhi",
+  { text: "\u00AB On ne peut concevoir le Ciel sans la Terre, ni la Terre sans le Ciel \u00BB", author: "Nguy\u1EC5n Du" },
+  { text: "\u00AB Le Ciel et la Terre sont en nous \u00BB", author: "Gandhi" },
 ];
 
 export default function Accueil() {
@@ -77,7 +77,7 @@ export default function Accueil() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.0, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="mb-10 h-12 md:h-8 relative"
+            className="mb-10 h-20 md:h-16 relative"
           >
             <AnimatePresence mode="wait">
               <motion.p
@@ -86,9 +86,10 @@ export default function Accueil() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="text-white/80 italic text-xs md:text-base absolute inset-0 flex items-center justify-center font-[family-name:var(--font-quote)] text-center px-4"
+                className="text-white/80 italic text-xs md:text-base md:whitespace-nowrap absolute inset-0 flex flex-col md:flex-row items-center justify-center md:gap-2 font-[family-name:var(--font-quote)] text-center px-4 leading-relaxed"
               >
-                {quotes[quoteIndex]}
+                <span>{quotes[quoteIndex].text}</span>
+                <span className="text-white/70 mt-1 md:mt-0">&mdash; {quotes[quoteIndex].author}</span>
               </motion.p>
             </AnimatePresence>
           </motion.div>

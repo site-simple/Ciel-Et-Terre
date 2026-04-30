@@ -11,6 +11,7 @@ interface HeroProps {
   overlay?: boolean;
   height?: string;
   blurDataURL?: string;
+  fixedBackground?: boolean;
 }
 
 export default function Hero({
@@ -20,6 +21,7 @@ export default function Hero({
   overlay = true,
   height = "h-[60vh]",
   blurDataURL,
+  fixedBackground = true,
 }: HeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -31,7 +33,7 @@ export default function Hero({
 
   return (
     <section
-      className={`relative ${height} flex items-center justify-center overflow-hidden bg-cover bg-center bg-fixed bg-earth`}
+      className={`relative ${height} flex items-center justify-center overflow-hidden bg-cover bg-center ${fixedBackground ? "bg-fixed" : ""} bg-earth`}
       style={{
         backgroundImage: `url(${image})`,
       }}

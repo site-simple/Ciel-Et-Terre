@@ -12,25 +12,25 @@ export default function Formations() {
         image="/images/formations-hero.webp"
         alt="Pierre ancienne avec cupules"
         title="Formations & Stages 2026"
-        subtitle="Stages en salle ou en pleine nature dans le Val de Bagnes, accessibles à tous."
+        subtitle={"Stages en salle ou en pleine nature dans le Val de Bagnes, accessibles à tous."}
         blurDataURL={blurDataURLs["formations-hero"]}
       />
 
       {/* Intro */}
       <section className="py-[clamp(3rem,2rem+3vw,4rem)]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <p className="text-night/80 text-lg">
+            <p className="text-night/80 text-lg lg:whitespace-nowrap">
               Inscription par mail à{" "}
               <a href="mailto:info@cieletterre.ch" className="text-sage-dark hover:text-sage transition-colors duration-[400ms] underline">
                 info@cieletterre.ch
               </a>{" "}
               ou par téléphone au{" "}
-              <a href="tel:+41794176737" className="text-sage-dark hover:text-sage transition-colors duration-[400ms] underline">
+              <a href="tel:+41794176737" className="text-sage-dark hover:text-sage transition-colors duration-[400ms] underline whitespace-nowrap">
                 079 417 67 37 (Joël)
               </a>{" "}
               ou au{" "}
-              <a href="tel:+41798584155" className="text-sage-dark hover:text-sage transition-colors duration-[400ms] underline">
+              <a href="tel:+41798584155" className="text-sage-dark hover:text-sage transition-colors duration-[400ms] underline whitespace-nowrap">
                 079 858 41 55 (Marie)
               </a>
             </p>
@@ -81,7 +81,7 @@ export default function Formations() {
               <div className="bg-cream rounded-lg p-4 space-y-2 text-sm">
                 <p><strong>Formateur :</strong> Joël</p>
                 <p><strong>Date :</strong> Samedi 4 juillet 2026</p>
-                <p><strong>Lieu :</strong> Plamproz, Haut Val de Bagnes</p>
+                <p><strong>Lieu :</strong> Atelier TerreColorée, Rue Félix Corthay 11, Le Châble</p>
                 <p><strong>Horaires :</strong> 09h00 à 16h00</p>
                 <p><strong>Tarifs :</strong> CHF 150.00 par personne (AVS et AI : CHF 120.00)</p>
                 <p><strong>Groupe :</strong> 3 à 6 personnes</p>
