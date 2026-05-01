@@ -112,6 +112,15 @@ h1, h2, h3, h4, h5, h6 {
   100% { background-position: -200% 0; }
 }
 
+/* ─── Cavolini self-hosted (woff2) — fallback Segoe Script puis cursive générique ─── */
+@font-face {
+  font-family: "Cavolini";
+  src: local("Cavolini"), url("/fonts/cavolini.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ─── Galerie Médiumnité : transitions douces entre tableaux ─── */
 @keyframes gallery-fade-in {
   from { opacity: 0; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -22,7 +22,10 @@ const FADE_DURATION = 1.4;
 
 function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImages; onImageClick: (i: number) => void }) {
   const [current, setCurrent] = useState(0);
-  const [previous, setPrevious] = useState(0);
+  // Les deux slots sont persistants : leurs <Image> ne se démontent jamais. On bascule juste activeSlot.
+  const slotImagesRef = useRef<[number, number]>([0, 0]);
+  const [activeSlot, setActiveSlot] = useState<0 | 1>(0);
+  const [, forceRender] = useReducer((x: number) => x + 1, 0);
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -30,25 +33,33 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
   const len = images.length;
 
   const go = (dir: number) => {
-    setPrevious(current);
     setCurrent((prev) => (prev + dir + len) % len);
   };
 
-  // Après le fade-in du nouveau tableau, l'ancien (fadé à 0) devient le previous, prêt pour la prochaine transition.
+  // Cross-fade entre slots : assigne current au slot inactif, puis bascule activeSlot après commit DOM.
   useEffect(() => {
-    if (previous === current) return;
+    if (slotImagesRef.current[activeSlot] === current) return;
+    const inactive: 0 | 1 = activeSlot === 0 ? 1 : 0;
+    slotImagesRef.current[inactive] = current;
+    forceRender();
     if (prefersReducedMotion) {
-      setPrevious(current);
+      setActiveSlot(inactive);
       return;
     }
-    const t = setTimeout(() => setPrevious(current), FADE_DURATION * 1000);
-    return () => clearTimeout(t);
-  }, [current, previous, prefersReducedMotion]);
+    // Double rAF : laisse le DOM committer le nouveau src avant de déclencher la transition d'opacité.
+    let inner = 0;
+    const outer = requestAnimationFrame(() => {
+      inner = requestAnimationFrame(() => setActiveSlot(inactive));
+    });
+    return () => {
+      cancelAnimationFrame(outer);
+      if (inner) cancelAnimationFrame(inner);
+    };
+  }, [current, activeSlot, prefersReducedMotion]);
 
   // Auto-play toutes les 10 secondes, redémarre après chaque changement
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPrevious(current);
       setCurrent((prev) => (prev + 1) % len);
     }, 10000);
     return () => clearTimeout(timer);
@@ -114,53 +125,40 @@ function GalerieCarousel({ images, onImageClick }: { images: typeof galleryImage
             aria-atomic="true"
           >
             <div className="relative overflow-visible flex flex-col items-center h-[calc(70vh-64px)] md:h-[80vh] px-6">
-              {/* Couche du tableau précédent : fade-out */}
-              {previous !== current && (
-                <div
-                  key={`prev-${previous}`}
-                  className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gallery-fade-out"
-                >
-                  <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
-                    <Image
-                      src={images[previous].src}
-                      alt=""
-                      width={images[previous].width}
-                      height={images[previous].height}
-                      className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-100px)]"
-                      sizes="(max-width: 768px) 100vw, 700px"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
-                      <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[previous].title}</p>
-                      <p className="text-dark-blue/50 text-xs mt-1">{images[previous].technique}</p>
+              {([0, 1] as const).map((slotIdx) => {
+                const imgIdx = slotImagesRef.current[slotIdx];
+                const isActive = activeSlot === slotIdx;
+                return (
+                  <div
+                    key={slotIdx}
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transition: prefersReducedMotion ? "none" : `opacity ${FADE_DURATION}s cubic-bezier(0.42, 0, 0.58, 1)`,
+                      pointerEvents: isActive ? undefined : "none",
+                    }}
+                    className="absolute inset-0 flex flex-col items-center justify-center"
+                    aria-hidden={!isActive}
+                  >
+                    <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
+                      <Image
+                        src={images[imgIdx].src}
+                        alt={isActive ? images[imgIdx].alt : ""}
+                        width={images[imgIdx].width}
+                        height={images[imgIdx].height}
+                        className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-100px)]"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                        priority
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
+                        <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[imgIdx].title}</p>
+                        <p className="text-dark-blue/50 text-xs mt-1">{images[imgIdx].technique}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-              {/* Couche du tableau courant : fade-in */}
-              <div
-                key={`curr-${current}`}
-                className="absolute inset-0 flex flex-col items-center justify-center gallery-fade-in"
-              >
-                <div className="rounded-lg overflow-hidden shadow-[4px_6px_20px_rgba(0,0,0,0.25)] inline-block">
-                  <Image
-                    src={images[current].src}
-                    alt={images[current].alt}
-                    width={images[current].width}
-                    height={images[current].height}
-                    className="block w-auto h-auto max-h-[calc(70vh-148px)] md:max-h-[calc(80vh-100px)]"
-                    sizes="(max-width: 768px) 100vw, 700px"
-                    priority
-                  />
-                </div>
-                <div className="mt-3">
-                  <div className="bg-white px-6 py-3 shadow-[3px_4px_12px_rgba(0,0,0,0.12)] rounded-lg border border-dark-blue/10">
-                    <p className="text-dark-blue/80 text-base font-[family-name:var(--font-heading)] italic">{images[current].title}</p>
-                    <p className="text-dark-blue/50 text-xs mt-1">{images[current].technique}</p>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
