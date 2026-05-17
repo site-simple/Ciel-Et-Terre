@@ -71,15 +71,16 @@ export default function APropos() {
             </div>
             <div className="lg:col-span-2 order-1 lg:order-2">
               <ScrollReveal delay={0.2}>
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-dark-blue/50 flex items-center justify-center">
-                  {/* Portrait de Marie - à remplacer par la photo fournie par le client */}
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 rounded-full bg-off-white/20 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-off-white text-4xl font-[family-name:var(--font-heading)]">M</span>
-                    </div>
-                    <p className="text-off-white/60 text-sm">Portrait de Marie</p>
-                    <p className="text-off-white/50 text-xs mt-1">(photo à venir)</p>
-                  </div>
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/apropos-marie-portrait.webp"
+                    alt="Marie avec ses pinceaux et des orchidées"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    placeholder="blur"
+                    blurDataURL={blurDataURLs["apropos-marie-portrait"]}
+                  />
                 </div>
               </ScrollReveal>
             </div>

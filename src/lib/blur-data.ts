@@ -3,6 +3,7 @@ export const blurDataURLs: Record<string, string> = {
   "accueil-hero": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADQAQCdASoKAAMABUB8JZwAAwF73hoiAAD+wZiBJdV0xU6rJ9BtlRx0TygoAA==",
   "apropos-hero": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAABwAwCdASoKABYAPzmEuVOvKKWoMAgB4CcJZwAASjjklfGnUQAA/tzWSSzFZV7uPcqtAYMRCaMjm8sBgSVWlClVINNwbBCtYCAAAA==",
   "apropos-joel-portrait": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAgCdASoKAAwABUB8JZACdAELZWdBKuKFAAD+W1lVHY/K/qAaW5c2hGP3q5a3nPm8Scv/oApadSZLFgAAAA==",
+  "apropos-marie-portrait": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACwAQCdASoKAAcABUB8JZwAAlkORwTQAP6YeEBZhBnbhTNLo46rCWJX+EAWl0WEd44AAA==",
   "contact-hero": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoKAAUABUB8JZQAApZCgQAA+p9EFQJuSuTDWdlLkjZ72P8PaLtw+lFX+NWEAA==",
   "formations-hero": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACQAQCdASoKAAcABUB8JZQAAu0pb3AA/jyOuKyWokB2kFJb451LaAAA",
   "galerie-aube": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoKAAcABUB8JaACdACv9AdcAAD8HP/sxm8HXxegxtF904LEUEXWC7qLxLqerEQV0gAAAA==",
